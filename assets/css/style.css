@@ -1,0 +1,37 @@
+.poppins{
+    font-family:'Poppins', sans-serif;
+}
+
+.background-image {
+    position: absolute;
+    z-index: -1; /* Mover la imagen detrás de otros elementos */
+    opacity: 0.3;
+  }
+
+.fuente-grande{font-size: 200%;
+}
+
+.pt-xl{
+    padding-top: 7%;
+}
+
+.pr-xl{
+    padding-right: 7%;
+}
+
+.header-img{
+    display: flex;
+    width: 12%;
+    height: 12%;
+}
+
+.header-titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.td{
+    padding: 2px;
+}
