@@ -1,0 +1,149 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador Nikola</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfDlA63Ebfu8RPmPYFFsbewsuIoemYSo&libraries=places"></script>
+
+</head>
+
+<body>
+
+<header class="d-flex justify-content-center poppins p-2 bg-secondary text-white">
+    <img class="header-img p-4" src="assets/imgs/Nikola-light-v2-300x201.webp" alt="">
+    <p class="d-flex header-titulo fs-1">Cotizador de proyectos solares</p>
+</header>
+<div class="container">
+    <div class="row pt-xl">
+        <div class="mb-3 col-md-6 col-12 d-flex flex-column align-items-start text-left text-black poppins fs-2">
+            <p class="fuente-grande mb-3">Energía solar a tu alcance</p>
+            <p class="fs-2 mb-3">Comienza hoy tu proyecto</p>
+            <p class="fs-5 pr-xl">Completa el formulario para obtener la cotización de tu proyecto y los ahorros que generarás</p>
+          </div>
+        <div class="col-md-6 col-12 text-left align-items-start text-black poppins fs-10">
+            <p class="fs-2">Cotiza con nosotros</p>
+            <p cla  ss="pt-2 fs-5">Ingresa información de tu hogar</p>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="autocomplete" placeholder="Dirección completa">
+                <label for="autocomplete">Dirección completa</label>
+              </div>
+              <div class="mb-3" id="map" style="width: 100%; height: 400px;"></div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="SuperficieTecho" placeholder="Superficie del techo">
+                <label for="SuperficieTecho">Superficie del techo (metros cuadrados)</label>
+              </div>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="materialTecho" name="materialTecho">
+                    <option value="Inclinado">Inclinado</option>
+                    <option value="Plano">Plano</option>
+                </select>
+                <label for="materialTecho">Material del techo</label>
+            </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="GastoLuz" placeholder="Gasto de luz">
+                <label for="GastoLuz">Gasto de luz (en pesos chilenos)</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="CuentaLuz" placeholder="Cargar cuenta de luz">
+                <label for="CuentaLuz">Cargar cuenta de luz</label>
+            </div>
+            <div class="mb-3">
+                <p class="pt-2 fs-5">Ingresa tus datos de contacto</p>
+                <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="NombreApellido" placeholder="Nombre y apellido">
+                <label for="NombreApellido">Nombre y apellido</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="RUT" placeholder="RUT">
+                <label for="RUT">RUT</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="tel" class="form-control" id="Telefono" placeholder="Teléfono">
+                <label for="Telefono">Teléfono</label>
+                </div>
+                <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="Email" placeholder="Email">
+                <label for="Email">Correo</label>
+                </div>
+            </div>
+            <div class="pt-"> 
+                <button type="button" class="btn btn-outline-warning fs-2">Cotizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfDlA63Ebfu8RPmPYFFsbewsuIoemYSo&libraries=places"></script>
+
+<script>
+  let map;
+  let marker;
+
+  // Función para inicializar el autocompletado y mostrar el mapa
+  function initAutocomplete() {
+      const autocompleteInput = document.getElementById('autocomplete');
+      const autocomplete = new google.maps.places.Autocomplete(autocompleteInput);
+
+      // Restricción de selección a sugerencias de direcciones en Chile
+      autocomplete.setComponentRestrictions({ country: 'cl' });
+
+      // Escuchar cuando se selecciona una dirección
+      autocomplete.addListener('place_changed', () => {
+          const place = autocomplete.getPlace();
+
+          if (!place.geometry) {
+              console.error('La dirección no tiene detalles de ubicación');
+              return;
+          }
+
+          // Centrar el mapa en la posición seleccionada
+          map.setCenter(place.geometry.location);
+          marker.setPosition(place.geometry.location);
+      });
+
+      // Crear el mapa y el marcador
+      map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: -33.4372, lng: -70.6506 }, // Posición inicial (Santiago, Chile)
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.SATELLITE, // Cambiar a vista satelital
+      });
+
+      marker = new google.maps.Marker({
+          map: map,
+          position: { lat: -33.4372, lng: -70.6506 }, // Posición inicial (Santiago, Chile)
+          draggable: true,
+      });
+
+      // Escuchar cuando se mueve el marcador y actualizar la dirección completa
+      marker.addListener('dragend', () => {
+          const newPosition = marker.getPosition();
+          map.panTo(newPosition);
+          // Aquí puedes usar la geocodificación inversa para obtener la dirección completa a partir de newPosition
+          // Luego actualiza el valor en el campo de entrada de autocompletado
+      });
+  }
+</script>
+
+
+<script>
+  // Llamar a la función initAutocomplete una vez que la API de Google Places se haya cargado
+  function loadScript() {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfDlA63Ebfu8RPmPYFFsbewsuIoemYSo&libraries=places&callback=initAutocomplete';
+      document.body.appendChild(script);
+  }
+  
+  window.onload = loadScript;
+</script>
+
+
+</body>
+
+<footer class="poppins text-center mt-4 p-4 bg-secondary text-white">
+    Desarrollado por <a class="text-warning" href="https://www.linkedin.com/in/bravocisterna/">@dbcisterna</a>
+</footer>
