@@ -79,38 +79,35 @@
             </table>        
         </div>
 
-        <div class="col-md-6 col-12 d-flex flex-column align-items-center justify-content-start  text-black poppins">
+        <div id="calculadora-resultados" class="col-md-6 col-12 d-flex flex-column align-items-center justify-content-start  text-black poppins">
             <table class="d-flex align-items-center justify-content-center table table-hover">
                 <p class="fs-2">Costo/Beneficio del proyecto</p>
                 <tr>
                     <td>Costo total (IVA incluido)</td>
-                    <td>$4.019.000</td>
+                    <td>$</td>
+                    <td id="CostoTotal"></td>
+
                 </tr>
                 <tr>
                     <td>Consumo eléctrico anual</td>
-                    <td>5488 kWh</td>
+                    <td>kWh</td>
+                    <td id="ConsumoEletricoAnual"></td>
                 </tr>
                 <tr>
                     <td>Generación energía solar</td>
-                    <td>5356 kWh</td>
+                    <td>kWh</td>
+                    <td id="GeneracionEnergiaSolar"></td>
                 </tr>
                 <tr>
                     <td>Ahorro Estimado Anual</td>
-                    <td>$708.518</td>
-                </tr>
-                <tr>
-                    <td>Payback</td>
-                    <td>6 años</td>
-                </tr>
+                    <td>$</td>
+                    <td id="AhorroEstimadoAnual"></td>                </tr>
+                
                 <tr>
                     <td>Ahorro ambiental anual</td>
-                    <td>2 toneladas de CO2</td>
-                </tr>
-                <tr>
-                    <td>Impacto forestal anual</td>
-                    <td>68 árboles salvados</td>
-                </tr>
-
+                    <td>CO2</td>
+                    <td id="AhorroAmbientalAnual"></td>                 </tr>
+                
 
                 <!-- Agrega más filas según sea necesario -->
             </table>        </div>
@@ -124,3 +121,10 @@
 <footer class="poppins text-center mt-4 p-4 bg-secondary text-white">
     David Bravo Cisterna - Contacto mediante LinkedIn <a class="text-warning" href="https://www.linkedin.com/in/bravocisterna/">@dbcisterna</a>
 </footer>
+
+
+<!-- Inicio de los script -->
+<!-- Script calculadora -->
+<script src="calculadora.js"></script>
+
+
