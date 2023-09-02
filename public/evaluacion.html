@@ -8,123 +8,67 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfDlA63Ebfu8RPmPYFFsbewsuIoemYSo&libraries=places"></script>
-
+<script src="comuna.js"></script>
+<script src="calculadora.js"></script>
 </head>
 
-<body>
+<body class="body">
 
-    <header class="d-flex justify-content-center poppins p-2 bg-secondary text-white">
+    <header class="header d-flex justify-content-center poppins p-2 bg-secondary text-white m-0">
         <img class="header-img p-4" src="assets/imgs/Nikola-light-v2-300x201.webp" alt="">
-        <p class="d-flex header-titulo fs-1">Cotizador de proyectos solares</p>
+        <p class="d-flex header-titulo fs-2">Cotizador de proyectos solares</p>
     </header>
+
+<main class="main">
 <div class="container">
 
     <div class="mb-2 col-12 d-flex flex-column align-items-center text-black poppins fs-2">
-        <p class="fs-1 mt-5 mb-3">Benjamín, gracias por cotizar con nosotros</p>
-        <p class="fs-3 mb-3">Revisa los resultados de tu evaluación preliminar</p>
-        <p class="fs-5 mb-3">Nos pondremos en contacto contigo para entregarte más detalles y conversar sobre tu proyecto</p>
-    </div>
-    
-    <div class="row mt-5">
-        <div class="col-md-6 col-12 d-flex flex-column align-items-center justify-content-start text-black poppins">
-            <table class="d-flex align-items-center justify-content-center table table-hover">
-                <p class="fs-2">Características del proyecto</p>
-                <tr>
-                    <td>Potencia instalada</td>
-                    <td>3,3 kWp</td>
-                </tr>
-                <tr>
-                    <td>Superficie utilizada</td>
-                    <td>38 m2</td>
-                </tr>
-                <tr>
-                    <td>Cantidad de paneles</td>
-                    <td>6</td>
-                </tr>
-                <tr>
-                    <td>Duración del proyecto</td>
-                    <td>10 semanas</td>
-                </tr>
-                <tr>
-                    <td>Modelo panel solar</td>
-                    <td>Trina Solar TSM-DE18 550 Wp</td>
-                </tr>
-                <tr>
-                    <td>Inversor</td>
-                    <td>HUAWEI SUN2000-3KTL-L1</td>
-                </tr>
-                <tr>
-                    <td>Medidor</td>
-                    <td>HUAWEI Power Meter</td>
-                </tr>
-                <tr>
-                    <td>Tablero fotovoltaico NIKOLA</td>
-                    <td>Incluido</td>
-                </tr>
-                <tr>
-                    <td>Instalación</td>
-                    <td>Incluido</td>
-                </tr>
-                <tr>
-                    <td>Gestión en garantías de insumos  </td>
-                    <td>Incluido</td>
-                </tr>
-                <tr>
-                    <td>Monitoreo remoto</td>
-                    <td>Incluido</td>
-                </tr>
-
-
-                <!-- Agrega más filas según sea necesario -->
-            </table>        
-        </div>
-
-        <div id="calculadora-resultados" class="col-md-6 col-12 d-flex flex-column align-items-center justify-content-start  text-black poppins">
-            <table class="d-flex align-items-center justify-content-center table table-hover">
-                <p class="fs-2">Costo/Beneficio del proyecto</p>
-                <tr>
-                    <td>Costo total (IVA incluido)</td>
-                    <td>$</td>
-                    <td id="CostoTotal"></td>
-
-                </tr>
-                <tr>
-                    <td>Consumo eléctrico anual</td>
-                    <td>kWh</td>
-                    <td id="ConsumoEletricoAnual"></td>
-                </tr>
+        <p class="fs-4 mt-5 mb-3"><b>Benjamín</b>, gracias por cotizar con nosotros</p>
+        <p class="fs-5 mb-5">Revisa la proyección de tus ahorros:</p>
+        
+        <div id="calculadora-resultados" class="col-md-12 col-12 d-flex flex-column align-items-center justify-content-center  text-black poppins">
+            <table class="d-flex align-items-center justify-content-center table table-hover">                
                 <tr>
                     <td>Generación energía solar</td>
                     <td>kWh</td>
-                    <td id="GeneracionEnergiaSolar"></td>
+                    <td id="tamanoplanta"></td>
                 </tr>
                 <tr>
                     <td>Ahorro Estimado Anual</td>
                     <td>$</td>
-                    <td id="AhorroEstimadoAnual"></td>                </tr>
+                    <td id="ahorroestimadoanual"></td>                </tr>
                 
-                <tr>
-                    <td>Ahorro ambiental anual</td>
-                    <td>CO2</td>
-                    <td id="AhorroAmbientalAnual"></td>                 </tr>
-                
-
                 <!-- Agrega más filas según sea necesario -->
-            </table>        </div>
-
+            </table>        
+        </div>
+        
+        <div class="mb-2 col-12 d-flex flex-column align-items-center text-black poppins fs-2">
+            <p class="fs-5 mt-5 m-10">Nos pondremos en contacto contigo para entregarte más detalles y conversar sobre tu proyecto </p>
+        </div>
     </div>
 </div>
 
-</body>
+</main>
 
 
-<footer class="poppins text-center mt-4 p-4 bg-secondary text-white">
+
+<footer class="footer poppins text-center mt-4 p-4 bg-secondary text-white">
     David Bravo Cisterna - Contacto mediante LinkedIn <a class="text-warning" href="https://www.linkedin.com/in/bravocisterna/">@dbcisterna</a>
 </footer>
 
 
 <!-- Inicio de los script -->
-<!-- Script calculadora -->
-<script src="calculadora.js"></script>
+
+<script>
+// Obtén los parámetros de la URL
+const urlParams = new URLSearchParams(window.location.search);
+// Obtiene el valor del parámetro "ahorro"
+const ahorroestimadoanual = urlParams.get("ahorroestimadoanual");
+const tamanoplanta = urlParams.get("tamanoplanta");
+// Asigna estos valores a los elementos HTML en tu página
+document.getElementById("tamanoplanta").textContent = tamanoplanta;
+document.getElementById("ahorroestimadoanual").textContent = ahorroestimadoanual;
+</script>
 
 
+</body>

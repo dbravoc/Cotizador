@@ -1,3 +1,19 @@
+.footer{
+    font-size: 12px;
+}
+
+.main {
+    flex: 1; /* Esto hará que ocupe el espacio restante */
+}
+
+.body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .poppins{
     font-family:'Poppins', sans-serif;
 }
@@ -12,17 +28,20 @@
 }
 
 .pt-xl{
-    padding-top: 7%;
+    padding-top: 5%;
 }
 
 .pr-xl{
-    padding-right: 7%;
+    padding-right: 5%;
+}
+
+.pl-xl{
+    padding-left: 5%;
 }
 
 .header-img{
-    display: flex;
-    width: 12%;
-    height: 12%;
+    width: 150px ;
+    height: auto;
 }
 
 .header-titulo{
@@ -35,3 +54,8 @@
 .td{
     padding: 2px;
 }
+
+.between{
+    justify-content: space-between;
+}
+
