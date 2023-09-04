@@ -12,14 +12,21 @@
 
 <body class="body">
 
-    <header class="header d-flex justify-content-center poppins p-2 bg-secondary text-white m-0">
-        <img class="header-img p-4" src="assets/imgs/Nikola-light-v2-300x201.webp" alt="">
-        <p class="d-flex header-titulo fs-2">Cotizador de proyectos solares</p>
+    <header class="d-flex justify-content-between poppins align-items-center pt-2 pb-2 pl-xl pr-xl bg-secondary text-white">
+        <img class="header-img" src="assets/imgs/Nikola-light-v2-300x201.webp" alt="">
+        <p class="d-flex fs-3 pl-xl" >Cotizador de proyectos solares</p>
     </header>
 
 <div class="container">
-    <div class="row pt-xl pl-xl pr-xl"> <!-- div para todo el conteiner-->
-        <div class="col-md-6 col-12  text-black poppins fs-10"> <!-- div para formulario-->
+    <div class="div-publicidad row pt-xl pl-xl pr-xl"> <!-- div para todo el conteiner-->
+
+        <div class="col-md-5 col-12 text-black poppins mb-5"> <!-- div para publicidad-->
+            <p class="fs-5 mb-3">Energía solar a tu alcance</p>
+            <p class="fs-3 mb-3">Comienza hoy tu proyecto</p>
+            <p class="fs-5 mb-3">Completa el formulario para obtener la cotización de tu proyecto y los ahorros que generarás</p>
+        </div>
+
+        <div class="col-md-6 col-12  text-black poppins fs-10 mb-5"> <!-- div para formulario-->
             <form id="calculadora">
             <p class="fs-2">Cotiza con nosotros</p>
             <p class="pt-2 fs-5">Ingresa información de tu hogar</p>
@@ -61,13 +68,7 @@
             <div class="pt-"> 
                 <button type="button" class="btn btn-outline-warning fs-2" id="BotonCotizar" onclick="AbrirEvaluacion()">Cotizar</button>
             </div>
-        </form>
-        </div>
-
-        <div class="col-md-6 col-12 align-items-center text-black poppins"> <!-- div para publicidad-->
-            <p class="fs-5 mb-3">Energía solar a tu alcance</p>
-            <p class="fs-3 mb-3">Comienza hoy tu proyecto</p>
-            <p class="fs-5 mb-3">Completa el formulario para obtener la cotización de tu proyecto y los ahorros que generarás</p>
+            </form>
         </div>
 
     </div>

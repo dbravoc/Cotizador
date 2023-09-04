@@ -40,14 +40,13 @@
 }
 
 .header-img{
-    width: 150px ;
+    width: 120px ;
     height: auto;
 }
 
-.header-titulo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header{
+    margin: 12px;
+
 
 }
 
@@ -56,6 +55,10 @@
 }
 
 .between{
+    justify-content: space-between;
+}
+
+.div-publicidad{
     justify-content: space-between;
 }
 
