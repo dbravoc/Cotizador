@@ -36,37 +36,38 @@
               </div>
             <div class="mb-3" id="map" style="width: 100%; height: 400px;">
             </div>
+            <p class="pt-2 fs-5">Ingresa información de tu consumo eléctrico</p>
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="GastoLuz" placeholder="Gasto de luz">
-                <label for="GastoLuz">Gasto de luz (en pesos chilenos)</label>
+                <input type="number" class="form-control" id="GastoLuz" placeholder="Gasto de luz" >
+                <label for="GastoLuz">Gasto de luz mensual (en pesos chilenos)</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="CuentaLuz" placeholder="Cargar cuenta de luz">
+                <input type="file" class="form-control" id="CuentaLuz" placeholder="Cargar cuenta de luz">
                 <label for="CuentaLuz">Cargar cuenta de luz</label>
             </div>
 
             <div class="mb-3">
                 <p class="pt-2 fs-5">Ingresa tus datos de contacto</p>
                 <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="NombreApellido" placeholder="Nombre y apellido">
+                <input type="text" class="form-control" id="NombreApellido" placeholder="Nombre y apellido" >
                 <label for="NombreApellido">Nombre y apellido</label>
                 </div>
                 <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="RUT" placeholder="RUT">
+                <input type="text" class="form-control" id="RUT" placeholder="RUT" >
                 <label for="RUT">RUT</label>
                 </div>
                 <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="Telefono" placeholder="Teléfono">
+                <input type="tel" class="form-control" id="Telefono" placeholder="Teléfono" >
                 <label for="Telefono">Teléfono</label>
                 </div>
                 <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="Email" placeholder="Email">
+                <input type="email" class="form-control" id="Email" placeholder="Email" >
                 <label for="Email">Correo</label>
                 </div>
             </div>
 
             <div class="pt-"> 
-                <button type="button" class="btn btn-outline-warning fs-2" id="BotonCotizar" onclick="AbrirEvaluacion()">Cotizar</button>
+                <button type="button" class="btn btn-outline-warning fs-4" id="BotonCotizar" onclick="AbrirEvaluacion()">Cotizar</button>
             </div>
             </form>
         </div>
@@ -138,8 +139,8 @@
 
       // Crear el mapa y el marcador
       map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: -33.4372, lng: -70.6506 }, // Posición inicial (Santiago, Chile)
-          zoom: 14,
+          center: { lat: -33.422364, lng: -70.614703}, // Posición inicial (Santiago, Chile)
+          zoom: 17,
           mapTypeId: google.maps.MapTypeId.SATELLITE, // Cambiar a vista satelital
       });
 
@@ -189,17 +190,22 @@ BotonCotizar.addEventListener("click", function() {
     const Email = document.getElementById("Email");
     const Radiacion = document.getElementById("");
     const GastoLuz = parseFloat(document.getElementById("GastoLuz").value);
-    const radiacioncomuna = 5.7
+    const radiacioncomuna = 1600
     const tarifaenergiapromedio = 145
-    const tarifainyeccionpromedio = tarifaenergiapromedio * 0.91
+    const tarifainyeccionpromedio = 101
     const sobredimensiongeneracion = 1.3
     const porcentajeautoconsumo = 0.33
+    const costoinstalacionkwp = 1078
+    const tamanopanel = 550
     const consumoeletricoanual = 12 * GastoLuz / tarifaenergiapromedio
     const generacionenergiasolar = sobredimensiongeneracion * consumoeletricoanual
-    const tamanoplanta = Math.round(generacionenergiasolar * radiacioncomuna) // Se calcula multiplicando generacionenergiasolar por radiacion
-    const ahorroestimadoanual = Math.round(tamanoplanta * porcentajeautoconsumo * tarifaenergiapromedio + tamanoplanta * (1 - porcentajeautoconsumo) * tarifainyeccionpromedio)
+    const tamanoplanta = Math.round(generacionenergiasolar / radiacioncomuna) // Se calcula multiplicando generacionenergiasolar por radiacion
+    const ahorroestimadoanual = Math.round(tamanoplanta * radiacioncomuna * porcentajeautoconsumo * tarifaenergiapromedio + tamanoplanta * radiacioncomuna * (1 - porcentajeautoconsumo) * tarifainyeccionpromedio)
+    const costoproyecto = tamanoplanta * costoinstalacionkwp
+    const cantidadpaneles = Math.ceil(tamanoplanta / tamanopanel)
+
 // Redirige a evaluacion.html con los resultados como parámetros en la URL
-window.location.href = `evaluacion.html?ahorroestimadoanual=${ahorroestimadoanual}&tamanoplanta=${tamanoplanta}`;
+window.location.href = `evaluacion.html?ahorroestimadoanual=${ahorroestimadoanual}&tamanoplanta=${tamanoplanta}&cantidadpaneles=${cantidadpaneles}&costoproyecto=${costoproyecto}`;
 
 });
 });
