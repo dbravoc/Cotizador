@@ -196,8 +196,9 @@ BotonCotizar.addEventListener("click", function() {
     const tarifainyeccionpromedio = 101
     const sobredimensiongeneracion = 1.3
     const porcentajeautoconsumo = 0.33
-    const costoinstalacionkwp = 1078
-    const tamanopanel = 550
+    const dolar = 890
+    const costoinstalacionkwp = 1078 * dolar
+    const tamanopanel = 0.550
     const consumoeletricoanual = 12 * GastoLuz / tarifaenergiapromedio
     const generacionenergiasolar = sobredimensiongeneracion * consumoeletricoanual
     const tamanoplanta = Math.round(generacionenergiasolar / radiacioncomuna) // Se calcula multiplicando generacionenergiasolar por radiacion
